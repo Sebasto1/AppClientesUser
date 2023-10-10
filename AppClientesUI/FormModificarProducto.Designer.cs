@@ -39,9 +39,6 @@
             lblStock = new Label();
             lblCosto = new Label();
             lblIDUsuario = new Label();
-            btnBuscar = new Button();
-            lblBuscar = new Label();
-            txtBuscar = new TextBox();
             SuspendLayout();
             // 
             // btnSave
@@ -150,9 +147,6 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnBuscar);
-            Controls.Add(lblBuscar);
-            Controls.Add(txtBuscar);
             Controls.Add(btnSave);
             Controls.Add(txtDescripcion);
             Controls.Add(txtPrecioVenta);
@@ -184,8 +178,5 @@
         private Label lblStock;
         private Label lblCosto;
         private Label lblIDUsuario;
-        private Button btnBuscar;
-        private Label lblBuscar;
-        private TextBox txtBuscar;
     }
 }

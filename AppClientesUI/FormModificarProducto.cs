@@ -21,7 +21,7 @@ namespace ABM
             InitializeComponent();
 
             this.producto = producto;
-            
+
 
             // Mostrar los detalles del producto en los TextBox
             txtDescripcion.Text = producto.Descripciones;
@@ -64,8 +64,8 @@ namespace ABM
 
             }
 
-        
-       
+
+
         }
     }
 }
