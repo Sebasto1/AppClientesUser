@@ -1,5 +1,5 @@
-﻿using AppClientesBussiness;
-using AppClientesEntities;
+﻿using SistemaGestionBusiness;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,7 +47,7 @@ namespace ABM
             try
             {
                 // Llamar al método para modificar el producto
-                UsuarioBussiness.ModifyUsuario(usuario);
+                UsuarioBusiness.ModifyUsuario(usuario);
 
                 // Mostrar un mensaje indicando el éxito de la operación
                 MessageBox.Show("Usuario modificado correctamente.");

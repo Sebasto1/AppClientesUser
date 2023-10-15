@@ -1,14 +1,14 @@
-﻿using AppClientesData;
-using AppClientesEntities;
+﻿using SistemaGestionData;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppClientesBussiness
+namespace SistemaGestionBusiness
 {
-    public static class ProductoVendidoBussiness
+    public static class ProductoVendidoBusiness
     {
         public static List<ProductoVendido> ListProductosVendidos()
         {
@@ -30,9 +30,9 @@ namespace AppClientesBussiness
             ProductoVendidoData.ModificarProductoVendido(productoVendido);
         }
 
-        public static void DeleteProductoVendido(ProductoVendido productoVendido)
+        public static void DeleteProductoVendido(int id)
         {
-            ProductoVendidoData.EliminarProductoVendido(productoVendido);
+            ProductoVendidoData.EliminarProductoVendido(id);
         }
     }
 }

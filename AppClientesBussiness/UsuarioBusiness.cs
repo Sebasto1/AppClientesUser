@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AppClientesData;
-using AppClientesEntities;
+using SistemaGestionData;
+using SistemaGestionEntities;
 
-namespace AppClientesBussiness
+namespace SistemaGestionBusiness
 {
-    public static class UsuarioBussiness
+    public static class UsuarioBusiness
     {
         public static List<Usuario> ListUsuario()
         {
@@ -30,9 +30,9 @@ namespace AppClientesBussiness
             UsuarioData.ModificarUsuario(usuario);
         }
 
-        public static void DeleteUsuario(Usuario usuario)
+        public static void DeleteUsuario(int id)
         {
-            UsuarioData.EliminarUsuario(usuario);
+            UsuarioData.EliminarUsuario(id);
         }
     }
 }

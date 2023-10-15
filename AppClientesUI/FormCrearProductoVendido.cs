@@ -1,4 +1,4 @@
-﻿using AppClientesData;
+﻿
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -9,8 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AppClientesBussiness;
-using AppClientesEntities;
+using SistemaGestionEntities;
+using SistemaGestionBusiness;
 
 namespace ABM
 {
@@ -42,7 +42,7 @@ namespace ABM
                 };
                 try
                 {
-                    ProductoVendidoBussiness.CreateProductoVendido(nuevoProductoVendido);
+                    ProductoVendidoBusiness.CreateProductoVendido(nuevoProductoVendido);
                     MessageBox.Show("Producto vendido satisfactoriamente");
                     this.Close();
                 }

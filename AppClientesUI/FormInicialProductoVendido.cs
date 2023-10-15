@@ -1,5 +1,5 @@
-﻿using AppClientesBussiness;
-using AppClientesEntities;
+﻿using SistemaGestionBusiness;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +23,7 @@ namespace ABM
 
         private void MostrarListaProductosVendidos()
         {
-            List<ProductoVendido> productosVendidos = ProductoVendidoBussiness.ListProductosVendidos();
+            List<ProductoVendido> productosVendidos = ProductoVendidoBusiness.ListProductosVendidos();
 
             // Asigna la lista de productos al DataGridView
             dataGridView1.DataSource = productosVendidos;

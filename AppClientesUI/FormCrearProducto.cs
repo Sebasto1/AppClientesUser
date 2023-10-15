@@ -1,5 +1,5 @@
-﻿using AppClientesBussiness;
-using AppClientesEntities;
+﻿using SistemaGestionBusiness;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,7 +43,7 @@ namespace ABM
                 };
                 try
                 {
-                    ProductoBussiness.CreateProducto(nuevoProducto);
+                    ProductoBusiness.CreateProducto(nuevoProducto);
                     MessageBox.Show("Producto Creado Satisfactoriamente");
                     this.Close();
 

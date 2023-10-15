@@ -1,5 +1,5 @@
-﻿using AppClientesBussiness;
-using AppClientesEntities;
+﻿using SistemaGestionBusiness;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +22,7 @@ namespace ABM
         }
         private void MostrarListaUsuarios()
         {
-            List<Usuario> usuarios = UsuarioBussiness.ListUsuario();
+            List<Usuario> usuarios = UsuarioBusiness.ListUsuario();
 
             // Asigna la lista de productos al DataGridView
             dataGridView1.DataSource = usuarios;

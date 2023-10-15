@@ -1,13 +1,13 @@
 ﻿using Microsoft.Data.SqlClient;
-using AppClientesEntities;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaGestionEntities;
 
-namespace AppClientesData
+namespace SistemaGestionData
 {
     public class ProductoVendidoData
     {
@@ -101,10 +101,6 @@ namespace AppClientesData
         }
         public static void CrearProductoVendido(ProductoVendido productoVendido)
         {
-
-
-
-
             try
             {
                 using (SqlConnection conexion = new SqlConnection(connectionString))
@@ -152,6 +148,7 @@ namespace AppClientesData
                     conexion.Open();
                     using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
+                        comando.Parameters.Add(new SqlParameter("id", SqlDbType.BigInt) { Value = productoVendido.Id });
                         comando.Parameters.Add(new SqlParameter("IdVenta", SqlDbType.BigInt) { Value = productoVendido.IdVenta });
                         comando.Parameters.Add(new SqlParameter("Stock", SqlDbType.Int) { Value = productoVendido.Stock });
                         comando.Parameters.Add(new SqlParameter("IdProducto", SqlDbType.BigInt) { Value = productoVendido.IdProducto });
@@ -170,9 +167,8 @@ namespace AppClientesData
             }
         }
 
-        public static void EliminarProductoVendido(ProductoVendido productoVendido)
+        public static void EliminarProductoVendido(int id)
         {
-
 
             try
             {
@@ -184,7 +180,7 @@ namespace AppClientesData
                     conexion.Open();
                     using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
-                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.BigInt) { Value = productoVendido.Id });
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = id });
 
                         comando.ExecuteNonQuery();
                     }
@@ -197,6 +193,8 @@ namespace AppClientesData
 
                 throw;
             }
+        
+
         }
     }
 }

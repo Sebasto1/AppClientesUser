@@ -1,5 +1,5 @@
-﻿using AppClientesBussiness;
-using AppClientesEntities;
+﻿using SistemaGestionBusiness;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,7 +41,7 @@ namespace ABM
             };
             try
             {
-                UsuarioBussiness.CreateUsuario(nuevoUsuario);
+                UsuarioBusiness.CreateUsuario(nuevoUsuario);
                 MessageBox.Show("Usuario Creado Satisfactoriamente");
                 this.Close();
 

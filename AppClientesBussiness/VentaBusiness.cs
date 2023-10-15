@@ -1,14 +1,14 @@
-﻿using AppClientesData;
-using AppClientesEntities;
+﻿using SistemaGestionData;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppClientesBussiness
+namespace SistemaGestionBusiness
 {
-    public static class VentaBussiness
+    public static class VentaBusiness
     {
         public static List<Venta> ListVentas()
         {
@@ -17,7 +17,7 @@ namespace AppClientesBussiness
 
         public static Venta GetVenta(int id)
         {
-           return VentaData.ObtenerVenta(id);
+            return VentaData.ObtenerVenta(id);
         }
 
         public static void CreateVenta(Venta venta)
@@ -30,9 +30,9 @@ namespace AppClientesBussiness
             VentaData.ModificarVenta(venta);
         }
 
-        public static void DeleteVenta(Venta venta)
+        public static void DeleteVenta(int id)
         {
-            VentaData.EliminarVenta(venta);
+            VentaData.EliminarVenta(id);
         }
     }
 }

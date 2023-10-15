@@ -1,5 +1,5 @@
-﻿using AppClientesBussiness;
-using AppClientesEntities;
+﻿using SistemaGestionBusiness;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,7 +46,7 @@ namespace ABM
                 try
                 {
                     // Llamar al método para modificar el producto
-                    ProductoVendidoBussiness.ModifyProductoVendido(productoVendido);
+                    ProductoVendidoBusiness.ModifyProductoVendido(productoVendido);
 
                     // Mostrar un mensaje indicando el éxito de la operación
                     MessageBox.Show("Producto vendido modificado correctamente.");

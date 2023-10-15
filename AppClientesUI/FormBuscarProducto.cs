@@ -1,5 +1,5 @@
-﻿using AppClientesBussiness;
-using AppClientesEntities;
+﻿using SistemaGestionBusiness;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +23,7 @@ namespace ABM
         {
             if (int.TryParse(txtBuscar.Text, out int id))
             {
-                Producto producto = ProductoBussiness.GetProductos(id);
+                Producto producto = ProductoBusiness.GetProductos(id);
 
                 if (producto != null)
                 {
@@ -60,7 +60,7 @@ namespace ABM
         {
             if (int.TryParse(txtBuscar.Text, out int id))
             {
-                Producto producto = ProductoBussiness.GetProductos(id);
+                Producto producto = ProductoBusiness.GetProductos(id);
 
                 if (producto != null)
                 {
@@ -69,7 +69,7 @@ namespace ABM
                     {
                         try
                         {
-                            ProductoBussiness.DeleteProducto(producto);
+                            ProductoBusiness.DeleteProducto(producto);
                             MessageBox.Show("Producto eliminado");
 
                             LimpiarCajas();

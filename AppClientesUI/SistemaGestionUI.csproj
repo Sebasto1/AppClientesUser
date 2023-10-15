@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppClientesBussiness\AppClientesBussiness.csproj" />
-    <ProjectReference Include="..\AppClientesEntities\AppClientesEntities.csproj" />
+    <ProjectReference Include="..\AppClientesBussiness\SistemaGestionBusiness.csproj" />
+    <ProjectReference Include="..\AppClientesEntities\SistemaGestionEntities.csproj" />
   </ItemGroup>
 
 </Project>

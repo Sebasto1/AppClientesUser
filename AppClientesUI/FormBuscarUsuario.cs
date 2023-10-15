@@ -1,5 +1,5 @@
-﻿using AppClientesBussiness;
-using AppClientesEntities;
+﻿using SistemaGestionBusiness;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +23,7 @@ namespace ABM
         {
             if (int.TryParse(txtBuscar.Text, out int id))
             {
-                Usuario usuario = UsuarioBussiness.GetUsuario(id);
+                Usuario usuario = UsuarioBusiness.GetUsuario(id);
 
                 if (usuario != null)
                 {
@@ -70,7 +70,7 @@ namespace ABM
 
             if (int.TryParse(txtBuscar.Text, out int id))
             {
-                Usuario usuario = UsuarioBussiness.GetUsuario(id);
+                Usuario usuario = UsuarioBusiness.GetUsuario(id);
 
                 if (usuario != null)
                 {
@@ -79,7 +79,7 @@ namespace ABM
                     {
                         try
                         {
-                            UsuarioBussiness.DeleteUsuario(usuario);
+                            UsuarioBusiness.DeleteUsuario(usuario);
                             MessageBox.Show("Usuario eliminado");
 
                             LimpiarCajas();

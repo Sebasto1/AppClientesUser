@@ -1,13 +1,13 @@
 ﻿using Microsoft.Data.SqlClient;
-using AppClientesEntities;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaGestionEntities;
 
-namespace AppClientesData
+namespace SistemaGestionData
 {
     public class VentaData
     {
@@ -158,22 +158,20 @@ namespace AppClientesData
             }
         }
 
-        public static void EliminarVenta(Venta venta)
+        public static void EliminarVenta(int id)
         {
 
             try
             {
                 using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-
                     string query = "DELETE FROM Venta " +
                     " WHERE Id = @Id";
 
                     conexion.Open();
-
                     using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
-                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = venta.Id });
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = id });
 
                         comando.ExecuteNonQuery();
                     }
@@ -188,4 +186,5 @@ namespace AppClientesData
             }
         }
     }
+    
 }

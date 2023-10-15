@@ -1,4 +1,4 @@
-﻿using AppClientesData;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,8 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AppClientesBussiness;
-using AppClientesEntities;
+using SistemaGestionBusiness;
+using SistemaGestionEntities;
 
 namespace ABM
 {
@@ -54,7 +54,7 @@ namespace ABM
         {
             if (int.TryParse(txtBuscar.Text, out int id))
             {
-                Venta venta = VentaBussiness.GetVenta(id);
+                Venta venta = VentaBusiness.GetVenta(id);
 
                 if (venta != null)
                 {
@@ -76,7 +76,7 @@ namespace ABM
         {
             if (int.TryParse(txtBuscar.Text, out int id))
             {
-                Venta venta = VentaBussiness.GetVenta(id);
+                Venta venta = VentaBusiness.GetVenta(id);
 
                 if (venta != null)
                 {
@@ -85,7 +85,7 @@ namespace ABM
                     {
                         try
                         {
-                            VentaBussiness.DeleteVenta(venta);
+                            VentaBusiness.DeleteVenta(venta);
                             MessageBox.Show("Venta eliminada");
 
                             LimpiarCajas();

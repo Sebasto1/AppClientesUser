@@ -1,5 +1,5 @@
-﻿using AppClientesEntities;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppClientesData
+namespace SistemaGestionData
 {
     public class ProductoData
     {
@@ -110,14 +110,14 @@ namespace AppClientesData
             {
                 using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-                    string query = "INSERT INTO Producto (Descripciones,Costo, PrecioVenta,Stock, IdUsuario)" +
-                    "VALUES(@Descripcion, @Costo, @PrecioVenta, @Stock, @IdUsuario); ";
+                    string query = "INSERT INTO Producto (Descripciones,Costo,PrecioVenta,Stock,IdUsuario)" +
+                    "VALUES(@Descripciones, @Costo, @PrecioVenta, @Stock, @IdUsuario); ";
 
                     conexion.Open();
                     using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
                         comando.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.BigInt) { Value = producto.IdUsuario });
-                        comando.Parameters.Add(new SqlParameter("Descripcion", SqlDbType.VarChar) { Value = producto.Descripciones });
+                        comando.Parameters.Add(new SqlParameter("Descripciones", SqlDbType.VarChar) { Value = producto.Descripciones });
                         comando.Parameters.Add(new SqlParameter("Costo", SqlDbType.Decimal) { Value = producto.Costo });
                         comando.Parameters.Add(new SqlParameter("PrecioVenta", SqlDbType.Decimal) { Value = producto.PrecioVenta });
                         comando.Parameters.Add(new SqlParameter("Stock", SqlDbType.Decimal) { Value = producto.Stock });
@@ -171,7 +171,7 @@ namespace AppClientesData
             }
         }
 
-        public static void EliminarProducto(Producto producto)
+        public static void EliminarProducto(int id)
         {
 
             try
@@ -184,7 +184,7 @@ namespace AppClientesData
                     conexion.Open();
                     using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
-                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = producto.Id });
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = id });
 
                         comando.ExecuteNonQuery();
                     }

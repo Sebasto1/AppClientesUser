@@ -1,6 +1,6 @@
 using ABM;
 
-namespace AppClientesUI
+namespace SistemaGestionUI
 {
     internal static class Program
     {

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AppClientesData;
-using AppClientesEntities;
+using SistemaGestionData;
+using SistemaGestionEntities;
 
-namespace AppClientesBussiness
+namespace SistemaGestionBusiness
 {
-    public static class ProductoBussiness
+    public static class ProductoBusiness
     {
         public static List<Producto> ListProductos()
         {
@@ -31,9 +31,9 @@ namespace AppClientesBussiness
         }
 
 
-        public static void DeleteProducto(Producto producto)
+        public static void DeleteProducto(int id)
         {
-            ProductoData.EliminarProducto(producto);
+            ProductoData.EliminarProducto(id);
         }
     }
 }

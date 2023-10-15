@@ -1,4 +1,4 @@
-﻿using AppClientesData;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,8 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AppClientesBussiness;
-using AppClientesEntities;
+using SistemaGestionBusiness;
+using SistemaGestionEntities;
 
 namespace ABM
 {
@@ -41,7 +41,7 @@ namespace ABM
                 };
                 try
                 {
-                    VentaBussiness.CreateVenta(nuevaVenta);
+                    VentaBusiness.CreateVenta(nuevaVenta);
                     MessageBox.Show("Venta creada satisfactoriamente");
                     this.Close();
                 }

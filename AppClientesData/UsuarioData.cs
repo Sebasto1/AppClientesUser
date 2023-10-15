@@ -1,5 +1,5 @@
-﻿using AppClientesEntities;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
+using SistemaGestionEntities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppClientesData
+namespace SistemaGestionData
 {
     public class UsuarioData
     {
@@ -166,7 +166,7 @@ namespace AppClientesData
 
                     using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
-
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = usuario.Id });
                         comando.Parameters.Add(new SqlParameter("NombreUsuario", SqlDbType.VarChar) { Value = usuario.NombreUsuario });
                         comando.Parameters.Add(new SqlParameter("Nombre", SqlDbType.VarChar) { Value = usuario.Nombre });
                         comando.Parameters.Add(new SqlParameter("Apellido", SqlDbType.VarChar) { Value = usuario.Apellido });
@@ -190,28 +190,30 @@ namespace AppClientesData
 
         }
 
-        public static void EliminarUsuario(Usuario usuario)
+        public static void EliminarUsuario(int id)
         {
-
 
             try
             {
                 using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
-                    string query = "DELETE FROM Usuario WHERE Id = @Id";
-                    conexion.Open();
+                    string query = "DELETE FROM Usuario " +
+                    " WHERE Id = @Id";
 
+                    conexion.Open();
                     using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
-                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.BigInt) { Value = usuario.Id });
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.VarChar) { Value = id });
 
                         comando.ExecuteNonQuery();
                     }
                     conexion.Close();
                 }
+
             }
             catch (Exception ex)
             {
+
                 throw;
             }
         }
