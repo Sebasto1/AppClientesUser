@@ -9,14 +9,12 @@ namespace SistemaGestionWebAPI.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        // GET: api/Usuarios
         [HttpGet(Name = "GetUsuarios")]
         public IEnumerable<Usuario> Get()
         {
             return UsuarioBusiness.ListUsuario().ToArray();
         }
 
-        // DELETE: api/Usuarios
         [HttpDelete(Name = "DeleteUsuario")]
         public IActionResult Delete([FromBody] int id)
         {
@@ -26,10 +24,9 @@ namespace SistemaGestionWebAPI.Controllers
                 return NotFound();
             }
             UsuarioBusiness.DeleteUsuario(id);
-            return NoContent();
+            return Ok();
         }
 
-        // PUT: api/Usuarios
         [HttpPut(Name = "PutUsuario")]
         public IActionResult Put([FromBody] Usuario usuario)
         {
@@ -38,10 +35,9 @@ namespace SistemaGestionWebAPI.Controllers
                 return BadRequest();
             }
             UsuarioBusiness.ModifyUsuario(usuario);
-            return NoContent();
+            return Ok();
         }
 
-        // POST: api/Usuarios
         [HttpPost(Name = "PostUsuario")]
         public IActionResult Post([FromBody] Usuario usuario)
         {
@@ -50,10 +46,9 @@ namespace SistemaGestionWebAPI.Controllers
                 return BadRequest();
             }
             UsuarioBusiness.CreateUsuario(usuario);
-            return CreatedAtRoute("GetUsuario", new { id = usuario.Id }, usuario);
+            return CreatedAtRoute("GetUsuarios", new { id = usuario.Id }, usuario);
         }
 
-        // GET: api/Usuarios/5
         [HttpGet("{id}", Name = "GetBuscarUsuario")]
         public ActionResult<Usuario> Get(int id)
         {

@@ -9,14 +9,24 @@ namespace SistemaGestionWebAPI.Controllers
     [ApiController]
     public class VentaController : ControllerBase
     {
-        // GET: api/Ventas
-        [HttpGet(Name = "GetVentas")]
+        
+        [HttpGet(Name = "GetVenta")]
         public IEnumerable<Venta> Get()
         {
             return VentaBusiness.ListVentas().ToArray();
         }
 
-        // DELETE: api/Ventas
+        [HttpPut(Name = "PutVenta")]
+        public IActionResult Put([FromBody] Venta venta)
+        {
+            if (venta.Id == 0)
+            {
+                return BadRequest();
+            }
+            VentaBusiness.ModifyVenta(venta);
+            return Ok();
+        }
+
         [HttpDelete(Name = "DeleteVenta")]
         public IActionResult Delete([FromBody] int id)
         {
@@ -26,22 +36,9 @@ namespace SistemaGestionWebAPI.Controllers
                 return NotFound();
             }
             VentaBusiness.DeleteVenta(id);
-            return NoContent();
+            return Ok();
         }
 
-        // PUT: api/Ventas
-        [HttpPut(Name = "PutVenta")]
-        public IActionResult Put([FromBody] Venta venta)
-        {
-            if (venta.Id == 0)
-            {
-                return BadRequest();
-            }
-            VentaBusiness.ModifyVenta(venta);
-            return NoContent();
-        }
-
-        // POST: api/Ventas
         [HttpPost(Name = "PostVenta")]
         public IActionResult Post([FromBody] Venta venta)
         {
@@ -52,8 +49,7 @@ namespace SistemaGestionWebAPI.Controllers
             VentaBusiness.CreateVenta(venta);
             return CreatedAtRoute("GetVenta", new { id = venta.Id }, venta);
         }
-
-        // GET: api/Ventas/5
+        
         [HttpGet("{id}", Name = "GetBuscarVenta")]
         public ActionResult<Venta> Get(int id)
         {

@@ -15,7 +15,17 @@ namespace SistemaGestionWebAPI.Controllers
             return ProductoVendidoBusiness.ListProductosVendidos().ToArray();
         }
 
-        // DELETE: api/ProductosVendidos
+        [HttpPut(Name = "PutProductoVendido")]
+        public IActionResult Put([FromBody] ProductoVendido productoVendido)
+        {
+            if (productoVendido.Id == 0)
+            {
+                return BadRequest();
+            }
+            ProductoVendidoBusiness.ModifyProductoVendido(productoVendido);
+            return Ok();
+        }
+
         [HttpDelete(Name = "DeleteProductoVendido")]
         public IActionResult Delete([FromBody] int id)
         {
@@ -25,22 +35,9 @@ namespace SistemaGestionWebAPI.Controllers
                 return NotFound();
             }
             ProductoVendidoBusiness.DeleteProductoVendido(id);
-            return NoContent();
+            return Ok();
         }
 
-        // PUT: api/ProductosVendidos
-        [HttpPut(Name = "PutProductoVendido")]
-        public IActionResult Put([FromBody] ProductoVendido productoVendido)
-        {
-            if (productoVendido.Id == 0)
-            {
-                return BadRequest();
-            }
-            ProductoVendidoBusiness.ModifyProductoVendido(productoVendido);
-            return NoContent();
-        }
-
-        // POST: api/ProductosVendidos
         [HttpPost(Name = "PostProductoVendido")]
         public IActionResult Post([FromBody] ProductoVendido productoVendido)
         {
@@ -52,7 +49,6 @@ namespace SistemaGestionWebAPI.Controllers
             return CreatedAtRoute("GetProductoVendido", new { id = productoVendido.Id }, productoVendido);
         }
 
-        // GET: api/ProductosVendidos/5
         [HttpGet("{id}", Name = "GetBuscarProductoVendido")]
         public ActionResult<ProductoVendido> Get(int id)
         {

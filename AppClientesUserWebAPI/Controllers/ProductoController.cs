@@ -16,7 +16,6 @@ namespace SistemaGestionWebAPI.Controllers
             return ProductoBusiness.ListProductos().ToArray();
         }
 
-        
         [HttpDelete(Name = "DeleteProducto")]
         public IActionResult Delete([FromBody] int id)
         {
@@ -26,10 +25,9 @@ namespace SistemaGestionWebAPI.Controllers
                 return NotFound();
             }
             ProductoBusiness.DeleteProducto(id);
-            return NoContent();
+            return Ok();
         }
 
-        
         [HttpPut(Name = "PutProducto")]
         public IActionResult Put([FromBody] Producto producto)
         {
@@ -38,10 +36,9 @@ namespace SistemaGestionWebAPI.Controllers
                 return BadRequest();
             }
             ProductoBusiness.ModifyProducto(producto);
-            return NoContent();
+            return Ok();
         }
 
-        
         [HttpPost(Name = "PostProducto")]
         public IActionResult Post([FromBody] Producto producto)
         {
@@ -53,7 +50,6 @@ namespace SistemaGestionWebAPI.Controllers
             return CreatedAtRoute("GetProducto", new { id = producto.Id }, producto);
         }
 
-        
         [HttpGet("{id}", Name = "GetBuscarProducto")]
         public ActionResult<Producto> Get(int id)
         {
