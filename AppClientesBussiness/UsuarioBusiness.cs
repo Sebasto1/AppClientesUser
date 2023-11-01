@@ -15,6 +15,10 @@ namespace SistemaGestionBusiness
             return UsuarioData.ListarUsuarios();
         }
 
+        public static Usuario GetNombre(int id)
+        {
+            return UsuarioData.ObtenerNombre(id);
+        }
         public static Usuario GetUsuario(int id)
         {
             return UsuarioData.ObtenerUsuario(id);
@@ -33,6 +37,22 @@ namespace SistemaGestionBusiness
         public static void DeleteUsuario(int id)
         {
             UsuarioData.EliminarUsuario(id);
+        }
+
+        public static Usuario Login(string NombreUsuario, string Contrasena)
+        {
+            {
+                var usuario = UsuarioData.ObtenerUsuarioPorNombreUsuario(NombreUsuario).FirstOrDefault();
+                if (usuario == null)
+                {
+                    return null;
+                }
+                if (Contrasena == usuario.Contraseña)
+                {
+                    return usuario;
+                }
+                return null;
+            }
         }
     }
 }

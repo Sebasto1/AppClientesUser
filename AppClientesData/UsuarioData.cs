@@ -13,7 +13,54 @@ namespace SistemaGestionData
     {
         private static string connectionString = @"Server=Sebasto;Database=SistemaGestion;Trusted_Connection=True;Encrypt=False";
 
+        public static Usuario ObtenerNombre(int id)
+        {
+            Usuario usuario = new Usuario();
 
+
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(connectionString))
+                {
+
+                    string query = "SELECT Id, Nombre, Apellido, NombreUsuario FROM Usuario Where Id=@Id";
+
+                    conexion.Open();
+
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
+                    {
+                        comando.Parameters.Add(new SqlParameter("Id", SqlDbType.BigInt) { Value = id });
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            if (dr.HasRows)
+                            {
+                                while (dr.Read())
+                                {
+                                    usuario.Id = Convert.ToInt32(dr["Id"]);
+                                    usuario.NombreUsuario = dr["NombreUsuario"].ToString();
+                                    usuario.Nombre = dr["Nombre"].ToString();
+                                    usuario.Apellido = dr["Apellido"].ToString();
+
+                                }
+                            }
+                        }
+
+
+
+                    }
+
+                    conexion.Close();
+                }
+                return usuario;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
         public static Usuario ObtenerUsuario(int id)
         {
             Usuario usuario = new Usuario();
@@ -64,6 +111,98 @@ namespace SistemaGestionData
             }
 
         }
+
+        public static List<Usuario> ObtenerUsuarioPorNombreUsuario(string nombreUsuario)
+        {
+            List<Usuario> lista = new List<Usuario>();
+
+            var query = "SELECT Id, Nombre, Apellido, NombreUsuario, Contraseña, Mail FROM Usuario WHERE NombreUsuario=@NombreUsuario;";
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                conexion.Open();
+                using (SqlCommand comando = new SqlCommand(query, conexion))
+                {
+                    var parametro = new SqlParameter();
+                    parametro.ParameterName = "NombreUsuario";
+                    parametro.SqlDbType = SqlDbType.VarChar;
+                    parametro.Value = nombreUsuario;
+
+                    comando.Parameters.Add(parametro);
+
+                    using (SqlDataReader dr = comando.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                var usuario = new Usuario();
+                                usuario.Id = Convert.ToInt32(dr["Id"]);
+                                usuario.Nombre = dr["Nombre"].ToString();
+                                usuario.Apellido = dr["Apellido"].ToString();
+                                usuario.NombreUsuario = dr["NombreUsuario"].ToString();
+                                usuario.Contraseña = dr["Contraseña"].ToString();
+                                usuario.Mail = dr["Mail"].ToString();
+                                lista.Add(usuario);
+
+                            }
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public static Usuario Login(string nombreUsuario, string contrasena)
+        {
+            Usuario usuario = new Usuario();
+
+
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(connectionString))
+                {
+
+                    string query = "SELECT Id, Nombre, Apellido, NombreUsuario, Contraseña, Mail FROM Usuario Where NombreUsuario=@nombreUsuario and Contraseña=@contrasena";
+
+                    conexion.Open();
+
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
+                    {
+                        comando.Parameters.Add(new SqlParameter("NombreUsuario", SqlDbType.VarChar) { Value = nombreUsuario });
+                        comando.Parameters.Add(new SqlParameter("Contraseña", SqlDbType.VarChar) { Value = contrasena });
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            if (dr.HasRows)
+                            {
+                                while (dr.Read())
+                                {
+                                    Usuario Usuario = new Usuario();
+                                    usuario.NombreUsuario = dr["NombreUsuario"].ToString();
+                                    usuario.Nombre = dr["Nombre"].ToString();
+                                    usuario.Apellido = dr["Apellido"].ToString();
+                                    usuario.Contraseña = dr["Contraseña"].ToString();
+                                    usuario.Mail = dr["Mail"].ToString();
+
+                                }
+                            }
+                        }
+                    }
+
+                    conexion.Close();
+                    return usuario;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+
 
         public static List<Usuario> ListarUsuarios()
         {

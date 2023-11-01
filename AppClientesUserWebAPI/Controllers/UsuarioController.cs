@@ -9,11 +9,6 @@ namespace SistemaGestionWebAPI.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        [HttpGet(Name = "GetUsuarios")]
-        public IEnumerable<Usuario> Get()
-        {
-            return UsuarioBusiness.ListUsuario().ToArray();
-        }
 
         [HttpDelete(Name = "DeleteUsuario")]
         public IActionResult Delete([FromBody] int id)
@@ -59,5 +54,18 @@ namespace SistemaGestionWebAPI.Controllers
             }
             return usuario;
         }
+
+        [HttpGet("{id}/nombre", Name = "GetBuscarNombre")]
+        public ActionResult ObtenerNombre(int id)
+        {
+            var usuario = UsuarioBusiness.GetNombre(id);
+            
+            if (usuario.Id == 0)
+            {
+                return NotFound();
+            }
+            return Ok(usuario);
+        }
+
     }
 }
