@@ -9,12 +9,6 @@ namespace SistemaGestionWebAPI.Controllers
     [ApiController]
     public class ProductoController : ControllerBase
     {
-        
-        [HttpGet(Name = "GetProductos")]
-        public IEnumerable<Producto> Get()
-        {
-            return ProductoBusiness.ListProductos().ToArray();
-        }
 
         [HttpDelete(Name = "DeleteProducto")]
         public IActionResult Delete([FromBody] int id)

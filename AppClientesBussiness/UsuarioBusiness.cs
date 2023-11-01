@@ -10,11 +10,6 @@ namespace SistemaGestionBusiness
 {
     public static class UsuarioBusiness
     {
-        public static List<Usuario> ListUsuario()
-        {
-            return UsuarioData.ListarUsuarios();
-        }
-
         public static Usuario GetNombre(int id)
         {
             return UsuarioData.ObtenerNombre(id);

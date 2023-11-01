@@ -13,54 +13,6 @@ namespace SistemaGestionData
     {
         private static string connectionString = @"Server=Sebasto;Database=SistemaGestion;Trusted_Connection=True;Encrypt=False";
 
-        public static List<Producto> ListarProductos()
-        {
-            List<Producto> lista = new List<Producto>();
-            try
-            {
-                using (SqlConnection conexion = new SqlConnection(connectionString))
-                {
-                    string query = "SELECT Id, IdUsuario, Costo, PrecioVenta, Stock,Descripciones FROM Producto";
-                    conexion.Open();
-
-                    using (SqlCommand comando = new SqlCommand(query, conexion))
-                    {
-                        using (SqlDataReader dr = comando.ExecuteReader())
-                        {
-                            if (dr.HasRows)
-                            {
-                                while (dr.Read())
-                                {
-                                    var producto = new Producto();
-                                    {
-                                        producto.Id = Convert.ToInt32(dr["Id"]);
-                                        producto.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
-                                        producto.Descripciones = dr["Descripciones"].ToString();
-                                        producto.Costo = Convert.ToDouble(dr["Costo"]);
-                                        producto.PrecioVenta = Convert.ToDouble(dr["PrecioVenta"]);
-                                        producto.Stock = Convert.ToInt32(dr["Stock"]);
-
-                                    }
-
-                                    lista.Add(producto);
-                                }
-                            }
-                        }
-                    }
-
-
-                    conexion.Close();
-
-                    return lista;
-                }
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-
-        }
         public static Producto ObtenerProducto(int id)
         {
             Producto producto = new Producto();

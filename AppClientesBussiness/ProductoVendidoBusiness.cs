@@ -20,19 +20,5 @@ namespace SistemaGestionBusiness
             return ProductoVendidoData.ObtenerProductoVendido(id);
         }
 
-        public static void CreateProductoVendido(ProductoVendido productoVendido)
-        {
-            ProductoVendidoData.CrearProductoVendido(productoVendido);
-        }
-
-        public static void ModifyProductoVendido(ProductoVendido productoVendido)
-        {
-            ProductoVendidoData.ModificarProductoVendido(productoVendido);
-        }
-
-        public static void DeleteProductoVendido(int id)
-        {
-            ProductoVendidoData.EliminarProductoVendido(id);
-        }
     }
 }
